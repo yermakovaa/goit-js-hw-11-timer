@@ -11,13 +11,18 @@ class CountdownTimer {
     this.init();
   }
 
-  init() {
-    setInterval(() => {
-      const currentTime = Date.now();
-      const deltaTime = this.targetDate - currentTime;
-      const time = this.getTimeComponents(deltaTime);
+  startTimer() {
+    const currentTime = Date.now();
+    const deltaTime = this.targetDate - currentTime;
+    const time = this.getTimeComponents(deltaTime);
 
-      this.updateClockface(time);
+    this.updateClockface(time);
+  }
+
+  init() {
+    this.startTimer();
+    setInterval(() => {
+      this.startTimer();
     }, 1000);
   }
 
